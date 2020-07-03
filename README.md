@@ -2,7 +2,7 @@
 
 With using the VSCode's remote container extension and the files in this repo, you can walk through the [Amplify SNS Workshop](https://amplify-sns.workshop.aws/) without installing (unwanted) stuff into your local machine's environment.
 
-We created and tested this repo on/for macOS, but it also could work on Windows machines 田ミ
+We've created and tested this repo on/for macOS, but it also could work on Windows machines 田ミ
 
 ## Prerequisities
 
@@ -18,37 +18,56 @@ We created and tested this repo on/for macOS, but it also could work on Windows 
 
 ## Structure
 
-```
+### Repository
+
+```shell
 .
 ├── .devcontainer <- Configs for the 'Remote - Containers' extension
 ├── .gitignore
+├── copy-boyaki-to-host.sh <- See the "Note" below
 ├── LICENSE
-├── README.md     <- This file :)
-└── boyaki        <- An empty directory for the app created in the workshop
+└── README.md              <- You're reading this file right now :)
 ```
+
+### In the remote container
+
+```shell
+.
+└── hostdir <- Contains all files and folders in this repository
+```
+
+#### Preserving your work
+
+**_NOTE: You will find the `boyaki` directory in your remote container during the workshop (so as in the VSCode's explorer) but NOT in your host machine. This is a side-effect of the fix PR [#3](https://github.com/toricls/aws-amplify-sns-workshop-in-vscode/pull/3) (for the issue [#2](https://github.com/toricls/aws-amplify-sns-workshop-in-vscode/issues/2)) to speed up the `npx create-react-app` command, thus you may lose your `boyaki` files once you stop the remote container. If you need to preserve and/or edit the files inside the `boyaki` folder outside of your remote container, you can use the bash script `copy-boyaki-to-host.sh` to copy those in-container files as a zip file `boyaki.zip` to your host machine's `boyaki` directory. Simply execute `/workspaces/hostdir/copy-boyaki-to-host.sh` inside your remote container and follow the guidance to run it._**
 
 ## Details of the container
 
 ### 1. Installed Packages
 
-#### via `.devcontainer/Dockerfile`.
+#### via `.devcontainer/Dockerfile`
 
 - Node.js v12.x
 - AWS CLI v2.x
 - Amazon Corretto 8 (OpenJDK 1.8.x) _for the "Amplify Mocking" feature_
 
-#### via `.devcontainer/devcontainer.json`.
+#### via `.devcontainer/devcontainer.json`
 
 - AWS Amplify CLI 4.16.1
 
-### 2. Configurations
+### 2. Default configurations
 
-#### Mounted directories
+_We'd recommend you to use this repository with the default configurations below, but still you can change the configs in the `devcontainer.json` file and/or the `Dockerfile` in the `.devcontainer` directory if you need._
 
-- Your workspace folder (= the cloned folder itself)
+#### Working directory (inside your remote container)
+
+- `/workspaces`
+
+#### Mounted directories (to your remote container)
+
+- Your git cloned folder (as `/workspaces/host` in the container)
 - Your AWS credentials folder ({$HOME|$USERPROFILE}/.aws). So that you can use your existing AWS profiles for the `amplify init` command, and you don't need to run the `amplify configure` command if you use your pre-configured AWS profile.
 
-#### Forwarded Ports
+#### Forwarded Ports (from host to your remote container)
 
 The following ports are exposed from the remote container and you can access them via your web browser with http://localhost:{PORT_NUMBER}.
 
