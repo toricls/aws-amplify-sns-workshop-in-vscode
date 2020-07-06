@@ -19,11 +19,11 @@
 	],
 
 	// Use in-container folder (not mounted host directory) as a workspace to speeeeeeed-up the `npx create-react-app` command. See https://github.com/toricls/aws-amplify-sns-workshop-in-vscode/pull/3.
-	"workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/hostdir,type=bind,consistency=cached",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/hostdir,type=bind,consistency=cached",
 	"workspaceFolder": "/workspaces",
 	"containerEnv": { 
 		"MOUNTED_HOST_DIR": "${localWorkspaceFolder}",
-		"MOUNTED_HOST_DIR_PATH_IN_CONTAINER": "/workspaces/hostdir"
+		"MOUNTED_HOST_DIR_PATH_IN_CONTAINER": "/hostdir"
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

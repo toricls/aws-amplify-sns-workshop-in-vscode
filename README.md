@@ -22,7 +22,7 @@ We've created and tested this repo on/for macOS, but it also could work on Windo
 
 ```shell
 .
-├── .devcontainer <- Configs for the 'Remote - Containers' extension
+├── .devcontainer          <- Configs for the 'Remote - Containers' extension
 ├── .gitignore
 ├── copy-boyaki-to-host.sh <- See the "Note" below
 ├── LICENSE
@@ -32,13 +32,16 @@ We've created and tested this repo on/for macOS, but it also could work on Windo
 ### In the remote container
 
 ```shell
-.
-└── hostdir <- Contains all files and folders in this repository
+/              <- Container's root
+...
+├── hostdir    <- Mounted host directory (= containers all files and folders of this repository)
+...
+└── workspaces <- Your working directory :)
 ```
 
 #### Preserving your work
 
-**_NOTE: You will find the `boyaki` directory in your remote container during the workshop (so as in the VSCode's explorer) but NOT in your host machine. This is a side-effect of the fix PR [#3](https://github.com/toricls/aws-amplify-sns-workshop-in-vscode/pull/3) (for the issue [#2](https://github.com/toricls/aws-amplify-sns-workshop-in-vscode/issues/2)) to speed up the `npx create-react-app` command, thus you may lose your `boyaki` files once you stop the remote container. If you need to preserve and/or edit the files inside the `boyaki` folder outside of your remote container, you can use the bash script `copy-boyaki-to-host.sh` to copy those in-container files as a zip file `boyaki.zip` to your host machine's `boyaki` directory. Simply execute `/workspaces/hostdir/copy-boyaki-to-host.sh` inside your remote container and follow the guidance to run it._**
+**_NOTE: You will find the `boyaki` directory in your remote container during the workshop (so as in the VSCode's explorer) but NOT in your host machine. This is a side-effect of the fix PR [#3](https://github.com/toricls/aws-amplify-sns-workshop-in-vscode/pull/3) (for the issue [#2](https://github.com/toricls/aws-amplify-sns-workshop-in-vscode/issues/2)) to speed up the `npx create-react-app` command, thus you may lose your `boyaki` files once you stop the remote container. If you need to preserve and/or edit the files inside the `boyaki` folder outside of your remote container, you can use the bash script `copy-boyaki-to-host.sh` to copy those in-container files as a zip file `boyaki.zip` to your host machine's `boyaki` directory. Simply execute `/hostdir/copy-boyaki-to-host.sh` inside your remote container and follow the guidance to run it._**
 
 ## Details of the container
 

@@ -14,3 +14,5 @@ RUN apt-get update && apt-get -y install --no-install-recommends java-common zip
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=dialog
+
+WORKDIR /workspaces
