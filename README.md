@@ -67,7 +67,7 @@ _We'd recommend you to use this repository with the default configurations below
 
 #### Mounted directories (to your remote container)
 
-- Your git cloned folder (as `/workspaces/host` in the container)
+- Your git cloned folder (as `/hostdir` in the container)
 - Your AWS credentials folder ({$HOME|$USERPROFILE}/.aws). So that you can use your existing AWS profiles for the `amplify init` command, and you don't need to run the `amplify configure` command if you use your pre-configured AWS profile.
 
 #### Forwarded Ports (from host to your remote container)
