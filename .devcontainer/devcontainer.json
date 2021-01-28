@@ -30,7 +30,7 @@
 	"forwardPorts": [3000,20002],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm install -g @aws-amplify/cli@4.16.1",
+	"postCreateCommand": "npm install -g @aws-amplify/cli@4.41.2",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "node"
